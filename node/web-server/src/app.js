@@ -39,10 +39,16 @@ app.get('/help', (req, res) => {
     })
 })
 
-app.get('/weather', (rq, res) => {
+app.get('/weather', (req, res) => {
+    if(!req.query.address){
+        return res.send({
+            error: 'You must provide an address term.'
+        })
+    }
     res.send({
-        name: 'Felipe',
-        age: 34
+        forecast: 'It is snowing',
+        location: 'Niteroi',
+        address: req.query.address
     })
 })
 
